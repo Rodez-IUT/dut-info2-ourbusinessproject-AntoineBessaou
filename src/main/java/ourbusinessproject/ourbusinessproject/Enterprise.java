@@ -1,38 +1,30 @@
 package ourbusinessproject.ourbusinessproject;
 
-import org.hibernate.validator.constraints.Length;
-
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+import java.util.List;
 
 @Entity
 public class Enterprise {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue
     private Long id;
 
     @NotEmpty
-    private String name, contactName;
-
+    private String name;
+    @Size(min = 10)
+    private String description;
     @NotEmpty
-    @Email
+    private String contactName;
+    @NotEmpty @Email
     private String contactEmail;
 
-    @Length(min = 10)
-    private String description;
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
+    @OneToMany
+    private List<Project> projects;
 
     public String getName() {
         return name;
@@ -64,5 +56,17 @@ public class Enterprise {
 
     public void setContactEmail(String contactEmail) {
         this.contactEmail = contactEmail;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setProjects(List<Project> projects) {
+        this.projects = projects;
+    }
+
+    public List<Project> getProjects() {
+        return projects;
     }
 }
