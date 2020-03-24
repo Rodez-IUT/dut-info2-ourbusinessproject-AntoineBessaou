@@ -1,28 +1,26 @@
 package ourbusinessproject.ourbusinessproject;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 @Entity
 public class Project {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
-
+    private long id;
     @NotEmpty
     private String title;
     private String description;
+    @ManyToOne @NotNull
+    private Enterprise enterprise;
 
-    public Long getId() {
-        return id;
+    public Project() {
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public Project(Enterprise enterprise) {
+        this.enterprise = enterprise;
     }
 
     public String getTitle() {
@@ -39,5 +37,13 @@ public class Project {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setEnterprise(Enterprise enterprise) {
+        this.enterprise = enterprise;
     }
 }
