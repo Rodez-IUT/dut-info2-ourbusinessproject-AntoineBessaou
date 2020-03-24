@@ -1,7 +1,6 @@
 package ourbusinessproject.ourbusinessproject;
 
 import org.springframework.stereotype.Service;
-
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
