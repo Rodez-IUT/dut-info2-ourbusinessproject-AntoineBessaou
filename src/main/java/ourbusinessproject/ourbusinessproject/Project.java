@@ -16,6 +16,14 @@ public class Project {
     @ManyToOne(cascade = CascadeType.ALL) @NotNull
     private Enterprise enterprise;
 
+    public Project() { }
+
+    public Project(@NotEmpty String title, String description, @NotNull Enterprise enterprise) {
+        this.title = title;
+        this.enterprise = enterprise;
+        this.description = description;
+    }
+
     public String getTitle() {
         return title;
     }

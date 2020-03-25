@@ -3,6 +3,8 @@ package ourbusinessproject.ourbusinessproject;
 import org.springframework.stereotype.Service;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
+import java.util.List;
 
 @Service
 public class EnterpriseProjectService {
@@ -29,5 +31,11 @@ public class EnterpriseProjectService {
 
     public Enterprise findEnterpriseById(Long anId) {
         return this.entityManager.find(Enterprise.class,anId);
+    }
+
+    public List<Project> findAllProjects() {
+        String query = "SELECT p FROM Project p ORDER BY p.title";
+        TypedQuery<Project> queryProject = entityManager.createQuery(query, Project.class);
+        return queryProject.getResultList();
     }
 }
