@@ -23,6 +23,10 @@ public class InitializationService {
 
     @Transactional
     public void initProjects() {
+        /* La méthode est englobée par une transaction. Ainsi, si une erreur survient, un rollback automatique
+           se produit. */
+
+
         initEnterprise1();
         initEnterprise2();
 
